@@ -18,7 +18,7 @@ This is a marketing analytics case study taken from the Serious SQL course by Da
   +  [Requirement #3 & #4](#requirement_3_4)
   +  [Requirement #5](#requirement_5)
 
-- [Data Exploration]
+- [Data Exploration](#data exploration)
 - [Data Analysis]
 - [Join Implementation]
 - [Problem Solving]
@@ -125,7 +125,7 @@ Along with the top 2 categories, marketing has also requested top actor film rec
 															
 ## 🔍 Data Exploration <a name = "data exploration"></a>
 
-There are seven tables in this case study and this can be seen in the ERD diagram below. The seven tables are rental, inventory, film, film_category, category, film_actor, actor.
+There are 7 tables in this case study and this can be seen in the ERD diagram below. The seven tables are rental, inventory, film, film_category, category, film_actor, actor.
 
 <br>
 	   
@@ -137,7 +137,9 @@ There are seven tables in this case study and this can be seen in the ERD diagra
     <br> 
 </p>
 															
-Click here to view :
+### Click here to view ⬇️:
+
+[![forthebadge](Images/badges/badges_data__exploration.svg)](https://github.com/BalakumaranRKB/Marketing_Analytics_Case_Study/blob/main/01-%20Data%20Exploration)
 
 
 
