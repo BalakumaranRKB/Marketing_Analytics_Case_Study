@@ -137,7 +137,7 @@ There are 7 tables in this case study and this can be seen in the ERD diagram be
     <br> 
 </p>
 															
-### Click here to view ⬇️:[![forthebadge](Images/badges_data__exploration.svg)](https://github.com/BalakumaranRKB/Marketing_Analytics_Case_Study/blob/main/01-%20Data%20Exploration)
+### Click here to view ⬇️:[![forthebadge](/Images/badges_data__exploration.svg)](https://github.com/BalakumaranRKB/Marketing_Analytics_Case_Study/blob/main/01-%20Data%20Exploration)
 
 
 
