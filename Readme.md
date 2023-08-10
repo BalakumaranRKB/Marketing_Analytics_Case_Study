@@ -12,11 +12,11 @@ This is a marketing analytics case study taken from the Serious SQL course by Da
 
 - [🤔 About](#about)
 
-- [🔭 Requirements Overview] (#requirements_overview)
-  +  Requirement #1(#requirement_1)
-  +  Requirement #2(#requirement_2)
-  +  Requirement #3 & #4(#requirement_3_4)
-  +  Requirement #5(#requirement_5)
+- [🔭 Requirements Overview](#requirements_overview)
+  +  [Requirement #1](#requirement_1)
+  +  [Requirement #2](#requirement_2)
+  +  [Requirement #3 & #4](#requirement_3_4)
+  +  [Requirement #5](#requirement_5)
 
 - [Data Exploration]
 - [Data Analysis]
@@ -123,7 +123,7 @@ Along with the top 2 categories, marketing has also requested top actor film rec
 </p>
 															
 															
-## 🔍 Data Exploration
+## 🔍 Data Exploration <a name = "data exploration"></a>
 
 There are seven tables in this case study and this can be seen in the ERD diagram below. The seven tables are rental, inventory, film, film_category, category, film_actor, actor.
 
