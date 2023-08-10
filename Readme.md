@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="images\Marketing_Analytics_Case_Study_Banner.png" alt="marketing-analytics">
+    <img src="Images\Marketing_Analytics_Case_Study_Banner.png" alt="marketing-analytics">
 </p>
 
 # Marketing Analytics Case Study -  Serious SQL
@@ -39,7 +39,7 @@ We will be using SQL to solve the various business problems that the customer an
 The marketing team at  DvD Rental Co has shared with a draft of the email template. The various business requirements can be found in this template and data points need to be gathered for every customer
 
 <p align="center">
-    <img src="images\Requirements_Overview.png" alt="email-template" width="500px">
+    <img src="Images\Requirements_Overview.png" alt="email-template" width="500px">
 </p>
 
 <p align="center"> <u>Source: <a href="https://www.datawithdanny.com/">Serious SQL</a></u>
@@ -56,7 +56,7 @@ For each customer, we need to identify the top 2 categories for each customer ba
 <br>
 
 <p align="center">
-    <img src="images\Requirement_1.png" alt="email-template" width="500px">
+    <img src="Images\Requirement_1.png" alt="email-template" width="500px">
 </p>
 
 <p align="center"> <u>Source: <a href="https://www.datawithdanny.com/">Serious SQL</a></u>
@@ -70,7 +70,7 @@ The marketing team has requested that we recommend 3 popular films  from each cu
 
 
 <p align="center">
-    <img src="images\Requirement_2.png" alt="email-template" width="500px">
+    <img src="Images\Requirement_2.png" alt="email-template" width="500px">
 </p>
 
 <p align="center"> <u>Source: <a href="https://www.datawithdanny.com/">Serious SQL</a></u>
@@ -98,7 +98,7 @@ The number of films watched by each customer in their top 2 categories is requir
 <br>
 	   
 <p align="center">
-    <img src="images\Requirement_3_4.png" alt="email-template" width="500px">
+    <img src="Images\Requirement_3_4.png" alt="email-template" width="500px">
 </p>
 
 <p align="center"> <u>Source: <a href="https://www.datawithdanny.com/">Serious SQL</a></u>
@@ -115,7 +115,7 @@ Along with the top 2 categories, marketing has also requested top actor film rec
 <br>
 	   
 <p align="center">
-    <img src="images\Requirement_5.png" alt="email-template" width="500px">
+    <img src="Images\Requirement_5.png" alt="email-template" width="500px">
 </p>
 
 <p align="center"> <u>Source: <a href="https://www.datawithdanny.com/">Serious SQL</a></u>
@@ -130,7 +130,7 @@ There are seven tables in this case study and this can be seen in the ERD diagra
 <br>
 	   
 <p align="center">
-    <img src="images\ERD_diagram.png" alt="email-template" width="500px">
+    <img src="Images\ERD_diagram.png" alt="email-template" width="500px">
 </p>
 
 <p align="center"> <u>Source: <a href="https://www.datawithdanny.com/">Serious SQL</a></u>
