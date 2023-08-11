@@ -19,11 +19,11 @@ This is a marketing analytics case study taken from the Serious SQL course by Da
   +  [Requirement #5](#requirement_5)
 
 - [🔍 Data Exploration](#data_exploration)
-- [🔬 Data Analysis](#data analysis)
-- [🧲 Join Implementation](#join implementation)
-- [🏗️ Problem Solving](#problem solving)
-- [🏁 Final Solution](#final solution)
-- [🪙 Business Questions](#business questions)
+- [🔬 Data Analysis](#data_analysis)
+- [🧲 Join Implementation](#join_implementation)
+- [🏗️ Problem Solving](#problem_solving)
+- [🏁 Final Solution](#final_solution)
+- [🪙 Business Questions](#business_questions)
 - [Support]
 
 ## 🤔 About  <a name = "about"></a>
@@ -142,7 +142,7 @@ There are 7 tables in this case study and this can be seen in the ERD diagram be
 
 
 
-## 🔬 Data Analysis <a name = "data analysis"></a>
+## 🔬 Data Analysis <a name = "data_analysis"></a>
 
 After checking out the dataset, we start looking at the important columns and come up with a few ideas to really understand the data better. When we analyze everything, we figure out that for our example, it doesn't matter whether we use an INNER JOIN or LEFT JOIN because all the values in our left table are already in the target table.
 <br>
@@ -152,7 +152,7 @@ After checking out the dataset, we start looking at the important columns and co
 [![forthebadge](/Images/badges/solution-data-analysis.svg)](https://github.com/BalakumaranRKB/Marketing_Analytics_Case_Study/tree/main/02%20-%20Data%20Analysis)
 
 
-## 🧲 Join Implementation <a name = "join implementation"></a>
+## 🧲 Join Implementation <a name = "join_implementation"></a>
 
 After that, we begin applying the table joins, which will assist us in tackling the problem. Based on our analysis, we've decided on the following sequence for joining the tables.
 
@@ -174,7 +174,7 @@ Taking a look at our table joining journey:
 
 
 
-## 🏗️ Problem Solving <a name = "problem solving"></a>
+## 🏗️ Problem Solving <a name = "problem_solving"></a>
 
 Having completed the process of joining all tables to create our base table, we can now shift our focus towards addressing business requirements 1 - 4. The resulting output at the conclusion of this phase is presented below. As demonstrated, this outcome effectively fulfills several of the business requirements outlined in the email template.
 
@@ -194,7 +194,7 @@ Having completed the process of joining all tables to create our base table, we 
 [![forthebadge](/Images/badges/solution-join-implementation.svg)](https://github.com/BalakumaranRKB/Marketing_Analytics_Case_Study/tree/main/04-Problem%20Solving)
 
 
-## 🏁 Final Solution <a name = "Final Solution"></a>
+## 🏁 Final Solution <a name = "Final_Solution"></a>
 
 
 Lastly, we began putting the final solutions in place for each of the requirements. Now, let's take a brief look at what our tables are showing us.
@@ -281,7 +281,7 @@ Output:
 
 
 
-## 🪙 Business Questions
+## 🪙 Business Questions <a name = "business_questions"></a>
 
 The following questions are part of the final case study quiz - these are example questions the Marketing team might be interested in!
 
