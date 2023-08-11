@@ -18,7 +18,7 @@ This is a marketing analytics case study taken from the Serious SQL course by Da
   +  [Requirement #3 & #4](#requirement_3_4)
   +  [Requirement #5](#requirement_5)
 
-- [🔍 Data Exploration](#data exploration)
+- [🔍 Data Exploration](#data_exploration)
 - [🔬 Data Analysis](#data analysis)
 - [🧲 Join Implementation](#join implementation)
 - [🏗️ Problem Solving](#problem solving)
@@ -123,7 +123,7 @@ Along with the top 2 categories, marketing has also requested top actor film rec
 </p>
 															
 															
-## 🔍 Data Exploration <a name = "data exploration"></a>
+## 🔍 Data Exploration <a name = "data_exploration"></a>
 
 There are 7 tables in this case study and this can be seen in the ERD diagram below. The seven tables are rental, inventory, film, film_category, category, film_actor, actor.
 
@@ -201,19 +201,18 @@ Lastly, we began putting the final solutions in place for each of the requiremen
 
 <br>
 
-
 ## 👉🏾 Requirement #1
 Below, you can observe the top two categories attributed to each customer: (For now, we'll focus on the output for customer_id = 1, 2)
 
  Output:
  
- |customer_id |category_name  |   rental_count|   category_rank   |
- |------------|-------------- |---------------|-------------------|
- |     1	  |     Classics  |      6	      |       1           |
- |     1	  |     Comedy	  |      5	      |       2           |
- |     2	  |     Sports	  |      5	      |       1           |
- |     2	  |     Classics  |      4	      |       2           |
- |     3	  |     Action	  |      4	      |       1           |
+ |customer_id |category_name |   rental_count|   category_rank   |
+ |------------|--------------|---------------|-------------------|
+ |     1	  |     Classics |      6	     |       1           |
+ |     1	  |     Comedy	 |      5	     |       2           |
+ |     2	  |     Sports	 |      5	     |       1           |
+ |     2	  |     Classics |      4	     |       2           |
+ |     3	  |     Action	 |      4	     |       1           |
 
 ## 👉🏾 Requirement #2
 
@@ -232,6 +231,7 @@ Output:
 
 
 
+
 ## 👉🏾 Requirement #3& #4:
 
 For the top first category, here is how the insights look like:
@@ -246,15 +246,15 @@ For the top first category, here is how the insights look like:
 
 And, for the second top category, the output table is:
 
-	Output:
-			
-			|customer_id |	category_name |	rental_count |	total_percentage |
-            |------------|----------------|------------- |-------------------|
-            |  184	     |  Drama	      |   3	         |   13              |
-            |  87	     |  Sci-Fi	      |   3	         |   10              |
-            |  477	     |  Travel	      |   3	         |   14              |
-            |  273	     |  New	          |   4	         |   11              |
-            |  550	     |  Drama	      |   4	         |   13              |
+	Output:		
+	|customer_id |	category_name |	rental_count |	total_percentage |
+    |------------|----------------|--------------|-------------------|
+    |  184	     |  Drama	      |   3	         |   13              |
+    |  87	     |  Sci-Fi	      |   3	         |   10              |
+    |  477	     |  Travel	      |   3	         |   14              |
+    |  273	     |  New	          |   4	         |   11              |
+    |  550	     |  Drama	      |   4	         |   13              |
+
 
 
 ## 👉🏾 Requirement #5
