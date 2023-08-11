@@ -246,14 +246,14 @@ For the top first category, here is how the insights look like:
 
 And, for the second top category, the output table is:
 
-	Output:		
-	|customer_id |	category_name |	rental_count |	total_percentage |
-    |------------|----------------|--------------|-------------------|
-    |  184	     |  Drama	      |   3	         |   13              |
-    |  87	     |  Sci-Fi	      |   3	         |   10              |
-    |  477	     |  Travel	      |   3	         |   14              |
-    |  273	     |  New	          |   4	         |   11              |
-    |  550	     |  Drama	      |   4	         |   13              |
+Output:		
+|customer_id |	category_name |	rental_count |	total_percentage |
+|------------|----------------|--------------|-------------------|
+|  184	     |  Drama	      |   3	         |   13              |
+|  87	     |  Sci-Fi	      |   3	         |   10              |
+|  477	     |  Travel	      |   3	         |   14              |
+|  273	     |  New	          |   4	         |   11              |
+|  550	     |  Drama	      |   4	         |   13              |
 
 
 
@@ -262,18 +262,18 @@ And, for the second top category, the output table is:
 The favorite actor for each customer can be found in the temp table top_actor_counts:
 
 Output:
-			  |customer_id |	actor_id |	first_name |  last_name   |	rental_count |
-              |------------|------------ |-------------|--------------|------------- |
-              |      1	   |    37	     |  VAL	       |  BOLGER	  |     6	     | 
-              |      2	   |    107	     |  GINA	   |  DEGENERES	  |     5	     | 
-              |      3	   |    150	     |  JAYNE	   |  NOLTE	      |     4	     | 
-              |      4	   |    102	     |  WALTER	   |  TORN	      |     4	     | 
-              |      5	   |    12	     |  KARL	   |  BERRY	      |     4	     | 
-              |      6	   |    191	     |  GREGORY	   |  GOODING	  |     4	     | 
-              |      7	   |    65	     |  ANGELA	   |  HUDSON	  |     5	     | 
-              |      8	   |    167	     |  LAURENCE   | BULLOCK	  |     5	     | 
-              |      9	   |    23	     |  SANDRA	   |  KILMER	  |     3	     | 
-              |      10	   |    12	     |  KARL	   |  BERRY	      |     4	     |
+|customer_id |	actor_id |	first_name |  last_name   |	rental_count |
+|------------|-----------|-------------|--------------|------------- |
+|      1	 |    37	 |  VAL	       |  BOLGER	  |     6	     | 
+|      2	 |    107	 |  GINA	   |  DEGENERES	  |     5	     | 
+|      3	 |    150	 |  JAYNE	   |  NOLTE	      |     4	     | 
+|      4	 |    102	 |  WALTER	   |  TORN	      |     4	     | 
+|      5	 |    12	 |  KARL	   |  BERRY	      |     4	     | 
+|      6	 |    191	 |  GREGORY	   |  GOODING	  |     4	     | 
+|      7	 |    65	 |  ANGELA	   |  HUDSON	  |     5	     | 
+|      8	 |    167	 |  LAURENCE   | BULLOCK	  |     5	     | 
+|      9	 |    23	 |  SANDRA	   |  KILMER	  |     3	     | 
+|      10	 |    12	 |  KARL	   |  BERRY	      |     4	     |
 			  
 
 ### Click here to view ⬇️:
