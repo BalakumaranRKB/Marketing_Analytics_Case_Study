@@ -54,8 +54,8 @@ Based on our initial data exploration and view of the ERD diagram the layout of 
 
 In order to find the ```rental_value``` at a customer_id level we need 2 columns namely: 
 
-    1. ```customer_id``` 
-    2. ```category_name```
+1. ```customer_id``` 
+2. ```category_name```
 
 The rental table is the main table that we will start from as it is the only table that contains customer_id. We would need to follow the journey path to reach the category table and include the category name. The last two tables containing actor details will be skipped for now.
 
@@ -79,8 +79,8 @@ There are two type of joins we can think of viz, Left Join and Inner Join. Let's
 
 The two questions that we need to lookup before deciding which join to use are:
 
-     1. How many records exist per ```inventory_id``` value in ```rental``` or ```inventory tables```?
-     2. How many overlapping and missing unique ```foreign key``` values are there between the two tables?
+1. How many records exist per ```inventory_id``` value in ```rental``` or ```inventory tables```?
+2. How many overlapping and missing unique ```foreign key``` values are there between the two tables?
 	 
 Now applying the two-phase approach that we shall use to answer the above queestions. First, generating some hypotheses about the data and then try to validate it to see if we are correct.
 
@@ -94,9 +94,9 @@ Now when we think about the inventory table - every item should have a unique in
 
 From these 2 key pieces of real life insight - we can generate some hypotheses about our 2 datasets.
 
-     1. The number of unique ```inventory_id``` records will be equal in both ```dvd_rentals.rental``` and ```dvd_rentals.inventory``` tables.
-     2. There will be a multiple records per unique ```inventory_id``` in the dvd_rentals.rental table.
-     3. There will be multiple ```inventory_id``` records per unique ```film_id``` value in the ```dvd_rentals.inventory``` table.
+1. The number of unique ```inventory_id``` records will be equal in both ```dvd_rentals.rental``` and ```dvd_rentals.inventory``` tables.
+2. There will be a multiple records per unique ```inventory_id``` in the dvd_rentals.rental table.
+3. There will be multiple ```inventory_id``` records per unique ```film_id``` value in the ```dvd_rentals.inventory``` table.
 	 
 ### 2.4.3 Validating the hypothesis using the given data
 
