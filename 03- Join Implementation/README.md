@@ -106,13 +106,13 @@ Output:
 
 |record_count|count|
 |----------- |-----|
-|       2	   | 133 |
-|       3	   | 131 |
-|       4	   | 183 |
-|       5	   | 136 |
-|       6	   | 187 |
-|       7	   | 116 |
-|       8	   | 72  |
+|       2	 | 133 |
+|       3	 | 131 |
+|       4	 | 183 |
+|       5	 | 136 |
+|       6	 | 187 |
+|       7	 | 116 |
+|       8	 | 72  |
 
 From the above output, out first hypothesis is confirmed. We have a 1-to-many relationship for the film_id foreign key in our dvd_rentals.inventory_table.
 
