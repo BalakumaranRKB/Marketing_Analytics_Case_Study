@@ -179,8 +179,6 @@ Taking a look at our table joining journey:
 Having completed the process of joining all tables to create our base table, we can now shift our focus towards addressing business requirements 1 - 4. The resulting output at the conclusion of this phase is presented below. As demonstrated, this outcome effectively fulfills several of the business requirements outlined in the email template.
 
 <br>
-
-
 |customer_id |	category_ranking |	category_name |	rental_count|	average_comparison|	percentile |category_percentage|
 |------------|-------------------|----------------|-------------|---------------------|------------|-------------------|
 |1	         |      1	         | Classics	      |   6	        |        4	          |  1	       |    19             |

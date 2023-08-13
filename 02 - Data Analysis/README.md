@@ -12,13 +12,16 @@
    
  
  And the final output should look like this:
+ 
+ Output:
 
 |customer_id  |category_ranking |	category_name |	rental_count |	average_comparison | percentile  | category_percentage|
-|1 			  |			1 		|	Classics 	  |    6         |      4              |  1          |    19               |
-|1 			  |			2 		|	Comedy        |    2         |      3              |  2          |    16               |
-|2 			  |			1 		|	Sports        |    6         |      4              |  11         |     17              |
-|2 			  |			2 		|	Classics 	  |    5         |      9              |  20         |     16              |
-|3 			  |			1 		|	Action        |    1         |      4              |  14         |     18              |
+|-------------|-----------------|-----------------|--------------|---------------------|-------------|--------------------|
+|1 			  |			1 		|	Classics 	  |    6         |      4              |  1          |    19              |
+|1 			  |			2 		|	Comedy        |    2         |      3              |  2          |    16              |
+|2 			  |			1 		|	Sports        |    6         |      4              |  11         |     17             |
+|2 			  |			2 		|	Classics 	  |    5         |      9              |  20         |     16             |
+|3 			  |			1 		|	Action        |    1         |      4              |  14         |     18             |
 
 
 And so on ........
@@ -100,7 +103,7 @@ From these 2 key pieces of real life insight - we can generate some hypotheses a
 We can use SQL to solve for these hypothesis.
 
 #### 2.4.3.1 Hypothesis 1
-     > The number of unique ```inventory_id``` records will be equal in both ```dvd_rentals.rental``` and ```dvd_rentals.inventory``` tables
+     The number of unique ```inventory_id``` records will be equal in both ```dvd_rentals.rental``` and ```dvd_rentals.inventory``` tables
 	 
 	 First we shall check  the unique number of inventory_id present in the retal table.
 	 
@@ -131,7 +134,7 @@ We can use SQL to solve for these hypothesis.
 	 
 #### 2.4.3.2 Hypothesis 2
 
-    > There will be a multiple records per unique ```inventory_id``` in the dvd_rentals.rental table.
+    There will be a multiple records per unique ```inventory_id``` in the dvd_rentals.rental table.
 	
 	```SQL
 	-- first generate group by counts on the target_column_values column
@@ -164,7 +167,7 @@ We can use SQL to solve for these hypothesis.
 	
 #### 2.4.3.3 Hypothesis 3
 	
-	> There will be multiple ```inventory_id``` records per unique ```film_id``` value in the ```dvd_rentals.inventory``` table.
+	 There will be multiple ```inventory_id``` records per unique ```film_id``` value in the ```dvd_rentals.inventory``` table.
 	
 	```SQL
 	with counts_base as (
@@ -177,7 +180,6 @@ We can use SQL to solve for these hypothesis.
     COUNT(target_column_values) as count_of_target_values
     from counts_base
     group by unique_record_counts
-	
 	```
 	Output:
 	
@@ -264,7 +266,7 @@ We can use SQL to solve for these hypothesis.
 	
 	Proceeding to the second question
 	
-	> **How many overlapping and missing unique foreign key values are there between the two tables?**
+	**How many overlapping and missing unique foreign key values are there between the two tables?**
 	
 	
 	Proceeding to check how many foreign keys only exist in the rental table and not in the inventory table:
