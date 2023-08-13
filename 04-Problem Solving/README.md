@@ -139,7 +139,7 @@ Customer 3
  </details>
 
 ##   4.3 Dealing with ties
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 We want the top 2 categories for each customer based on the rental count but what if there is a tie in the rental count. We could sort the category alphabetically but it might not be the best solution.
 
@@ -211,7 +211,7 @@ Output:
 |	3	    |   Drama	        |1	          | 2005-07-30T21:45:46.000Z |
 |	3	    |   Documentary		|1            | 2005-06-19T08:34:53.000Z |
 	
-	Great - now we can see that Customer 3 most recent rental was from the Sci-Fi category. Earlier it was the Animation category.
+Great - now we can see that Customer 3 most recent rental was from the Sci-Fi category. Earlier it was the Animation category.
 	
 ##   4.3 Data Aggregation on Whole Dataset
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
