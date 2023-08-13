@@ -193,23 +193,23 @@ Alternatively, we can explore the rental_date column to determine which category
       rental_count DESC,
       latest_rental_date DESC;
     ```
-   Output:
+Output:
 	
-	|customer_id|	category_name	|rental_count |lastest_rental_date       |
-	|-----------|-------------------|------------ |--------------------------|                                                                 
-	|	3	    |   Action	        |4	          | 2005-07-29T11:07:04.000Z |
-	|	3	    |   Sci-Fi		    |3            | 2005-08-22T09:37:27.000Z |
-	|	3	    |   Animation		|3            | 2005-08-18T14:49:55.000Z |
-	|	3	    |   Music	        |2	          | 2005-08-23T07:10:14.000Z |
-	|	3	    |   Comedy	        |2	          | 2005-08-20T06:14:12.000Z |
-	|	3	    |   Horror	        |2	          | 2005-07-31T11:32:58.000Z |
-	|	3	    |   Sports	        |2	          | 2005-07-30T13:31:20.000Z |
-	|	3	    |   New		        |2            | 2005-07-28T04:46:30.000Z |
-	|	3	    |   Games	        |2	          | 2005-07-27T04:54:42.000Z |
-	|	3	    |   Classics	    |1	          | 2005-08-01T14:19:48.000Z |
-	|	3	    |   Family	        |1	          | 2005-07-31T03:27:58.000Z |
-	|	3	    |   Drama	        |1	          | 2005-07-30T21:45:46.000Z |
-	|	3	    |   Documentary		|1            | 2005-06-19T08:34:53.000Z |
+|customer_id|	category_name	|rental_count |lastest_rental_date       |
+|-----------|-------------------|------------ |--------------------------|                                                                 
+|	3	    |   Action	        |4	          | 2005-07-29T11:07:04.000Z |
+|	3	    |   Sci-Fi		    |3            | 2005-08-22T09:37:27.000Z |
+|	3	    |   Animation		|3            | 2005-08-18T14:49:55.000Z |
+|	3	    |   Music	        |2	          | 2005-08-23T07:10:14.000Z |
+|	3	    |   Comedy	        |2	          | 2005-08-20T06:14:12.000Z |
+|	3	    |   Horror	        |2	          | 2005-07-31T11:32:58.000Z |
+|	3	    |   Sports	        |2	          | 2005-07-30T13:31:20.000Z |
+|	3	    |   New		        |2            | 2005-07-28T04:46:30.000Z |
+|	3	    |   Games	        |2	          | 2005-07-27T04:54:42.000Z |
+|	3	    |   Classics	    |1	          | 2005-08-01T14:19:48.000Z |
+|	3	    |   Family	        |1	          | 2005-07-31T03:27:58.000Z |
+|	3	    |   Drama	        |1	          | 2005-07-30T21:45:46.000Z |
+|	3	    |   Documentary		|1            | 2005-06-19T08:34:53.000Z |
 	
 	Great - now we can see that Customer 3 most recent rental was from the Sci-Fi category. Earlier it was the Animation category.
 	
