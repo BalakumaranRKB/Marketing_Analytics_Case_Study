@@ -103,35 +103,36 @@ From these 2 key pieces of real life insight - we can generate some hypotheses a
 We can use SQL to solve for these hypothesis.
 
 #### 2.4.3.1 Hypothesis 1
-     The number of unique ```inventory_id``` records will be equal in both ```dvd_rentals.rental``` and ```dvd_rentals.inventory``` tables
-	 
-	 First we shall check  the unique number of inventory_id present in the retal table.
-	 
-	 ```sql 
-	 select count(distinct inventory_id)
-     from dvd_rentals.rental
-	 ```
-	 Output:
-	 
-	 |count|
-	 |-----|
-     |4580 |
-	 
-	 Now lets take a look at the inventory table for the same. 
-	 
-	 
-	  ```sql 
-	 select count(distinct inventory_id)
-     from dvd_rentals.rental
-	 ```
-	 Output:
-	 
-	 |count|
-	 |-----|
-     |4581 |
-	 
-	 We can observe that there is one count extra compared to the total count returned from the rental table. This result **invalidates** our hypothesis. Looks like there was an inventrory_id which was never used for lending to the customer.
-	 
+    
+The number of unique ```inventory_id``` records will be equal in both ```dvd_rentals.rental``` and ```dvd_rentals.inventory``` tables
+	
+First we shall check  the unique number of inventory_id present in the retal table.
+	
+```sql 
+select count(distinct inventory_id)
+   from dvd_rentals.rental
+```
+Output:
+
+|count|
+|-----|
+|4580 |
+
+Now lets take a look at the inventory table for the same. 
+	
+	
+ ```sql 
+select count(distinct inventory_id)
+   from dvd_rentals.rental
+```
+Output:
+
+|count|
+|-----|
+|4581 |
+	
+We can observe that there is one count extra compared to the total count returned from the rental table. This result **invalidates** our hypothesis. Looks like there was an inventrory_id which was never used for lending to the customer.
+	
 #### 2.4.3.2 Hypothesis 2
 
     There will be a multiple records per unique ```inventory_id``` in the dvd_rentals.rental table.
