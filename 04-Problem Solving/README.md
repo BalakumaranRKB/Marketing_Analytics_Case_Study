@@ -1,8 +1,8 @@
 # 4 Problem Solving
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 ##   4.1 Revist of Base Table
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ``` sql
 DROP TABLE IF EXISTS complete_joint_dataset;
 CREATE TEMP TABLE complete_joint_dataset AS
@@ -43,7 +43,7 @@ Output:
 
 
 ##   4.2 Rental Count of Customer(Category Level)
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 To generate the names of the top 2 ranking categories of films watched by each customer, we would need to calculate the rental count, i.e., the total number of films they have watched for each category level. The same applies to other calculated fields, such as percentile and average comparison, where we need to calculate the number of films watched for each category, rather than limiting category counts to only the top 2 ranked categories
 
 By taking an smaller subset from the previous base table where we take customer_ids of values 1,2,3.
