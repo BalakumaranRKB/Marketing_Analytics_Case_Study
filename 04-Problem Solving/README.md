@@ -69,74 +69,74 @@ ORDER BY
 
 Spitting the output for each customer for easier viewing:
 
- Customer 1
- <details>
- <summary> Click to view output </summary>
+Customer 1
+<details>
+<summary> Click to view output </summary>
 
-        |customer_id|  category	    |rental_count |
-        |-----------|---------------|-------------|
-        |1	        |  Classics	    |     6       |
-        |1	        |  Comedy	    |     5       |
-        |1	        |  Drama	    |     4       |
-        |1	        |  Action	    |     2       |
-        |1	        |  Music	    |     2       |
-        |1	        |  New	        |     2       |
-        |1	        |  Sci-Fi	    |     2       |
-        |1	        |  Sports	    |     2       |
-        |1	        |  Animation	|     2       |
-        |1	        |  Documentary  |     1       |
-        |1	        |  Family	    |     1       |
-        |1	        |  Games	    |     1       |
-        |1	        |  Travel	    |     1       |
-        |1	        |  Foreign	    |     1       |
+|customer_id|  category	    |rental_count |
+|-----------|---------------|-------------|
+|1	        |  Classics	    |     6       |
+|1	        |  Comedy	    |     5       |
+|1	        |  Drama	    |     4       |
+|1	        |  Action	    |     2       |
+|1	        |  Music	    |     2       |
+|1	        |  New	        |     2       |
+|1	        |  Sci-Fi	    |     2       |
+|1	        |  Sports	    |     2       |
+|1	        |  Animation	|     2       |
+|1	        |  Documentary  |     1       |
+|1	        |  Family	    |     1       |
+|1	        |  Games	    |     1       |
+|1	        |  Travel	    |     1       |
+|1	        |  Foreign	    |     1       |
 		
  </details>
 
- Customer 2
- <details>
- <summary> Click to view output </summary>
+Customer 2
+<details>
+<summary> Click to view output </summary>
  
-        |customer_id|  category	    |rental_count |
-        |-----------|---------------|-------------|
-        |  2	    |  Sports	    |   5         |
-        |  2	    |  Classics	    |   4         |
-        |  2	    |  Animation    |   3         |
-        |  2	    |  Action	    |   3         |
-        |  2	    |  Travel	    |   2         |
-        |  2	    |  Games	    |   2         |
-        |  2	    |  New	        |   2         |
-        |  2	    |  Foreign	    |   1         |
-        |  2	    |  Children	    |   1         |
-        |  2	    |  Documentary	|   1         |
-        |  2	    |  Family	    |   1         |
-        |  2	    |  Music	    |   1         |
-        |  2	    |  Sci-Fi	    |   1         |
+|customer_id|  category	    |rental_count |
+|-----------|---------------|-------------|
+|  2	    |  Sports	    |   5         |
+|  2	    |  Classics	    |   4         |
+|  2	    |  Animation    |   3         |
+|  2	    |  Action	    |   3         |
+|  2	    |  Travel	    |   2         |
+|  2	    |  Games	    |   2         |
+|  2	    |  New	        |   2         |
+|  2	    |  Foreign	    |   1         |
+|  2	    |  Children	    |   1         |
+|  2	    |  Documentary	|   1         |
+|  2	    |  Family	    |   1         |
+|  2	    |  Music	    |   1         |
+|  2	    |  Sci-Fi	    |   1         |
 		
- </details>
+</details>
 
 
- Customer 3
- <details>
- <summary> Click to view output </summary>
+Customer 3
+<details>
+<summary> Click to view output </summary>
  
 
-      |customer_id  |  category	    |rental_count |
-      |-------------|---------------|-------------|   
-      |    3	    |    Action	    |     4       |
-      |    3	    |    Animation	|     3       |
-      |    3	    |    Sci-Fi	    |     3       |
-      |    3	    |    Sports	    |     2       |
-      |    3	    |    Comedy	    |     2       |
-      |    3	    |    Games	    |     2       |
-      |    3	    |    Horror	    |     2       |
-      |    3	    |    Music	    |     2       |
-      |    3	    |    New	    |     2       |
-      |    3	    |    Drama	    |     1       |
-      |    3	    |    Family	    |     1       |
-      |    3	    |    Documentary|     1       |
-      |    3	    |    Classics	|     1       |
+|customer_id  |  category	|rental_count |
+|-------------|-------------|-------------|   
+|    3	    |    Action	    |     4       |
+|    3	    |    Animation	|     3       |
+|    3	    |    Sci-Fi	    |     3       |
+|    3	    |    Sports	    |     2       |
+|    3	    |    Comedy	    |     2       |
+|    3	    |    Games	    |     2       |
+|    3	    |    Horror	    |     2       |
+|    3	    |    Music	    |     2       |
+|    3	    |    New	    |     2       |
+|    3	    |    Drama	    |     1       |
+|    3	    |    Family	    |     1       |
+|    3	    |    Documentary|     1       |
+|    3	    |    Classics	|     1       |
 
-  </details>
+ </details>
 
 ##   4.3 Dealing with ties
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -193,7 +193,7 @@ Alternatively, we can explore the rental_date column to determine which category
       rental_count DESC,
       latest_rental_date DESC;
     ```
-	Output:
+   Output:
 	
 	|customer_id|	category_name	|rental_count |lastest_rental_date       |
 	|-----------|-------------------|------------ |--------------------------|                                                                 
