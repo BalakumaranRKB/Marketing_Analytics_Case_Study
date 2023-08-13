@@ -293,7 +293,7 @@ Output:
 |       5	  |     38            |
 
 
-###   4.3.2 Average category rental counts
+###   4.3.3 Average category rental counts
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Using the AVG function to find the AVG category records for all customers which gives us the true average rental count for each category.
 
@@ -433,7 +433,7 @@ Output:
 After this transformation our percentile values which were earlier from 0 to 1 are now from 0 to 100.
 
 
-###   4.3.4 Joining temporary tables
+###   4.3.5 Joining temporary tables
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 With all our aggregated values stored in temporary tables , we would now need to join them together and store it in a single temporary table. The following SQL code is shown below:
 
@@ -464,7 +464,7 @@ ORDER BY percentile;
 ```
 Output:
 
-|customer_id	category_name	rental_count	total_rental_count	avg_rental_count |	percentile  |
+|customer_id   |category_name |	rental_count  |	total_rental_count |avg_rental_count |	percentile  |
 |--------------|--------------|---------------|--------------------|-----------------|--------------|
 |       1	   | Classics	  |     6	      |       32	       |    2.006410256	 |      1       |
 |       1	   | Comedy	      |     5	      |       32	       |    1.901010101	 |      1       |
@@ -484,7 +484,7 @@ Output:
 Now fields like avg_comparison and category_percentage need to be added. Lets incorporate those fields as well
 
 
-###   4.3.4 Adding Calculated fields
+###   4.3.6 Adding Calculated fields
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 The field avg_comparison calcualted the difference between the total number of films watched by the customer minus the average viewrship in that category. The category percentage field describes the proportion of films watched by the customer(in each category) with respect to the total films he/she as viewed.
