@@ -121,7 +121,7 @@ For the 2nd hypothesis we will check the the film-id and row count
 
 Output:
 
-|film_id	film_count |
+|film_id |	film_count |
 |--------|-------------|
 |   1000 |    1        |
 |   999  |    1        |
@@ -354,18 +354,18 @@ Now joining parts 1,2 ,3 and 4 to obtain the final base dataset:
   
 Output:
  
-|customer_id | film_id	title	        |category_id	|   category_name |
-|------------|---------|------------------|---------------|-----------------|
-|     130	   |  80	  BLANKET BEVERLY	|    8	        |  Family         |
-|     459	   |  333	  FREAKY POCUS	    |   12	        |  Music          |
-|     408	   |  373	  GRADUATE LORD	    |   3	        |  Children       |
-|     333	   |  535	  LOVE SUICIDES	    |   11	        |  Horror         |
-|     222	   |  450	  IDOLS SNATCHERS	|    3	        |  Children       |
-|     549	   |  613	  MYSTIC TRUMAN	    |    5	        |  Comedy         |
-|     269	   |  870	  SWARM GOLD		|    11         |     Horror      |
-|     239	   |  510	  LAWLESS VISION	|    2	        |  Animation      |
-|     126	   |  565	  MATRIX SNOWMAN	|    9	        |  Foreign        |
-|     399	   |  396	  HANGING DEEP	    |    7	        |  Drama          |
+|customer_id | film_id |	title	      |category_id	|   category_name |
+|------------|---------|------------------|-------------|-----------------|
+|     130	 |  80	   |  BLANKET BEVERLY |    8	    |  Family         |
+|     459	 |  333	   |  FREAKY POCUS	  |   12	    |  Music          |
+|     408	 |  373	   |  GRADUATE LORD	  |   3	        |  Children       |
+|     333	 |  535	   |  LOVE SUICIDES	  |   11	    |  Horror         |
+|     222	 |  450	   |  IDOLS SNATCHERS |    3	    |  Children       |
+|     549	 |  613	   |  MYSTIC TRUMAN	  |    5	    |  Comedy         |
+|     269	 |  870	   |  SWARM GOLD	  |    11       |     Horror      |
+|     239	 |  510	   |  LAWLESS VISION  |    2	    |  Animation      |
+|     126	 |  565	   |  MATRIX SNOWMAN  |    9	    |  Foreign        |
+|     399	 |  396	   |  HANGING DEEP	  |    7	    |  Drama          |
 																			  
 																			  
 																			  
