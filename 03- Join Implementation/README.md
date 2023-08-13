@@ -83,80 +83,80 @@ Output:
   
   And, we can now test our hypothesis using SQL.
  
-  ### 3.2.3 Validating our hypotheses
-  
-  For the 1st hypothesis
-  
-  ```sql
-  with base_counts as (
-  
-  select film_id,COUNT(*) as record_count
-  from dvd_rentals.inventory
-  group by film_id
-  
-  )
-  select record_count,COUNT(DISTINCT film_id)
-  from base_counts
-  group by record_count
-  order by record_count
-  ```
-  
-  
-  Output:
-  
-  |record_count|count|
-  |----------- |-----|
-  |       2	   | 133 |
-  |       3	   | 131 |
-  |       4	   | 183 |
-  |       5	   | 136 |
-  |       6	   | 187 |
-  |       7	   | 116 |
-  |       8	   | 72  |
-  
-  From the above output, out first hypothesis is confirmed. We have a 1-to-many relationship for the film_id foreign key in our dvd_rentals.inventory_table.
-  
-  
-  For the 2nd hypothesis we will check the the film-id and row count 
-  
-  Output:
-  
-  |film_id	film_count   |
-  |--------|-------------|
-  |   1000 |    1        |
-  |   999  |    1        |
-  |   998  |    1        |
-  |   997  |    1        |
-  |   996  |    1        |
-  
-  From the above output we can confirm that there is a 1-to-1 relationship in the dvd_rentals.film. Our 2nd hypothesis is valid.
- 
-  ### 3.2.4 How many unique foreign key values exist in each table?
-  
-  We shall use the anti join technique to check how many foreign key vlaues exist in each table:
-  
-  ```sql
-  SELECT
-  COUNT(DISTINCT film_id) AS total_count
-  FROM dvd_rentals.inventory
-  WHERE NOT EXISTS(
-    SELECT film_id
-    FROM dvd_rentals.film
-    WHERE inventory.film_id = film.film_id
-  );
-  ```
-  
-  Output:
-  
-  |count|
-  |-----|
-  |0    |
-  
-  All the film_ids present in inventory table are present in the film table.
-  
-  Checking for the other table:
-  
-  ```sql
+### 3.2.3 Validating our hypotheses
+
+For the 1st hypothesis
+
+```sql
+with base_counts as (
+
+select film_id,COUNT(*) as record_count
+from dvd_rentals.inventory
+group by film_id
+
+)
+select record_count,COUNT(DISTINCT film_id)
+from base_counts
+group by record_count
+order by record_count
+```
+
+
+Output:
+
+|record_count|count|
+|----------- |-----|
+|       2	   | 133 |
+|       3	   | 131 |
+|       4	   | 183 |
+|       5	   | 136 |
+|       6	   | 187 |
+|       7	   | 116 |
+|       8	   | 72  |
+
+From the above output, out first hypothesis is confirmed. We have a 1-to-many relationship for the film_id foreign key in our dvd_rentals.inventory_table.
+
+
+For the 2nd hypothesis we will check the the film-id and row count 
+
+Output:
+
+|film_id	film_count   |
+|--------|-------------|
+|   1000 |    1        |
+|   999  |    1        |
+|   998  |    1        |
+|   997  |    1        |
+|   996  |    1        |
+
+From the above output we can confirm that there is a 1-to-1 relationship in the dvd_rentals.film. Our 2nd hypothesis is valid.
+
+### 3.2.4 How many unique foreign key values exist in each table?
+
+We shall use the anti join technique to check how many foreign key vlaues exist in each table:
+
+```sql
+SELECT
+COUNT(DISTINCT film_id) AS total_count
+FROM dvd_rentals.inventory
+WHERE NOT EXISTS(
+  SELECT film_id
+  FROM dvd_rentals.film
+  WHERE inventory.film_id = film.film_id
+);
+```
+
+Output:
+
+|count|
+|-----|
+|0    |
+
+All the film_ids present in inventory table are present in the film table.
+
+Checking for the other table:
+
+```sql
 		SELECT
 		COUNT(DISTINCT film.film_id)
 		FROM dvd_rentals.film
@@ -167,209 +167,209 @@ Output:
 		);
   ```
   
-  Output:
-  
-  |count|
-  |-----|
-  |42   |
+Output:
 
-  Here we see a much larger count of keys which exist in the dvd_rentals.film table than in the dvd_rentals.inventory table.
+|count|
+|-----|
+|42   |
+
+Here we see a much larger count of keys which exist in the dvd_rentals.film table than in the dvd_rentals.inventory table.
+
+Lastly, we need to verify the total count of unique foreign key values resulting from a left semi join on the table dvd_rentals.inventory, which serves as our primary left table(Base Table). 
   
-  Lastly, we need to verify the total count of unique foreign key values resulting from a left semi join on the table dvd_rentals.inventory, which serves as our primary left table(Base Table). 
-  
-  ``` sql
-  
-      SELECT
-      COUNT(DISTINCT film_id)
-    FROM dvd_rentals.inventory
-    -- note how the NOT is no longer here for a left semi join
-    -- compared to the anti join!
-    WHERE EXISTS (
-      SELECT film_id
-      FROM dvd_rentals.film
-      WHERE film.film_id = inventory.film_id
-    );
-  ```
-  
-  Output:
-  
-  |count|
-  |-----|
-  |958  |
-  
-  
-    From the above output we observe that most of our values are located in the inventory table. We can perform an inner join or left join, both types will not affect the output in any way, which we can confirm later on. 
-  
-    <details>
-    <summary>Click to see SQL code</summary>
-    <br>
-    
-    ```sql
-    DROP TABLE IF EXISTS left_join_part_2;
-    CREATE TEMP TABLE left_join_part_2 AS (
+``` sql
+
     SELECT
-      inventory.inventory_id,
-      inventory.film_id,
-      film.title
-    FROM dvd_rentals.inventory
-    LEFT JOIN dvd_rentals.film
-      ON inventory.film_id = film.film_id
-    );
-    
-    DROP TABLE IF EXISTS inner_join_part_2;
-    CREATE TEMP TABLE inner_join_part_2 AS (
-    SELECT 
-      inventory.inventory_id,
-      inventory.film_id,
-      film.title
-    FROM dvd_rentals.inventory
-    LEFT JOIN dvd_rentals.film
-      ON inventory.film_id = film.film_id
-    );
-    
-    SELECT 
-      'inner join' AS join_type,
-      COUNT(*) AS row_counts,
-      COUNT(DISTINCT film_id) AS unique_film_values
-    FROM inner_join_part_2
-    
-    UNION
-    
-    SELECT 
-      'left join' AS join_type,
-      COUNT(*) AS row_counts,
-      COUNT(DISTINCT film_id) AS unique_film_values
-    FROM left_join_part_2;
-    ```
-    
-    </details>
-	
-	
-	### 3.2.5 Join Implementation of part 1 and 2
-	
-	Now that we’ve done part 1 and 2 for the joining journey - let’s demonstrate join these 2 using 3 inner joins.
-	
-	```sql
-     DROP TABLE IF EXISTS join_parts_1_and_2;
-     CREATE TEMP TABLE join_parts_1_and_2 AS
-     SELECT
-       rental.customer_id,
-       inventory.film_id,
-       film.title
-     FROM dvd_rentals.rental
-     INNER JOIN dvd_rentals.inventory
-       ON rental.inventory_id = inventory.inventory_id
-     INNER JOIN dvd_rentals.film
-       ON inventory.film_id = film.film_id;
-     
-     SELECT * FROM join_parts_1_and_2 limit 10;
-	```
-	
-	Output:
-	
-	|customer_id  |	film_id	 |   title         |
-	| ------------|----------|-----------------|
-    |    130	  |80	     |  BLANKET BEVERLY|
-    |    459	  |333	     |  FREAKY POCUS   |
-    |    408	  |373	     |  GRADUATE LORD  |
-    |    333	  |535	     |  LOVE SUICIDES  |
-    |    222	  |450	     |  IDOLS SNATCHERS|
-    |    549	  |613	     |  MYSTIC TRUMAN  |
-    |    269	  |870	     |  SWARM GOLD     |
-    |    239	  |510	     |  LAWLESS VISION |
-    |    126	  |565	     |  MATRIX SNOWMAN |
-    |    399	  |396	     |  HANGING DEEP   |
-	
-	### 3.2.6 Join Implementation of part 3 and 4
-    In part 3 of our table join journey, we observe a 1-to-1 relationship for film_id in both the left table dvd_rentals.film and the right table dvd_rentals.film_category.
+    COUNT(DISTINCT film_id)
+  FROM dvd_rentals.inventory
+  -- note how the NOT is no longer here for a left semi join
+  -- compared to the anti join!
+  WHERE EXISTS (
+    SELECT film_id
+    FROM dvd_rentals.film
+    WHERE film.film_id = inventory.film_id
+  );
+```
 
-    As we proceed to part 4, we will encounter a similar 1-to-many relationship between category_id and the left table dvd_rentals.film_category, along with a 1-to-1 relationship involving the dvd_rentals.category table.
-	
-	```sql
-	 DROP TABLE IF EXISTS complete_joint_dataset;
-     CREATE TEMP TABLE complete_joint_dataset AS
-     SELECT
-       rental.customer_id,
-       inventory.film_id,
-       film.title,
-       film_category.category_id,
-       category.name AS category_name
-     FROM dvd_rentals.rental
-     INNER JOIN dvd_rentals.inventory
-       ON rental.inventory_id = inventory.inventory_id
-     INNER JOIN dvd_rentals.film
-       ON inventory.film_id = film.film_id
-     INNER JOIN dvd_rentals.film_category
-       ON film.film_id = film_category.film_id
-     INNER JOIN dvd_rentals.category
-       ON film_category.category_id = category.category_id;
-     
-     SELECT * FROM complete_joint_dataset limit 6;
-	 
-	```
-	
-	Output:
-	
-	|customer_id|film_id |	  title	     |   category_id|	category_name |
-	|-----------|--------|---------------|--------------|-----------------|
-    |       130	|  80	 |BLANKET BEVERLY|	8	        | Family          |
-    |       459	|  333	 |FREAKY POCUS	 |   12	        | Music           |
-    |       408	|  373	 |GRADUATE LORD	 |   3	        | Children        |
-    |       333	|  535	 |LOVE SUICIDES	 |   11	        | Horror          |
-    |       222	|  450	 |IDOLS SNATCHERS|	3	        | Children        |
-    |       549	|  613	 |MYSTIC TRUMAN	 |   5	        | Comedy          |
-    |       269	|  870	 |SWARM GOLD	 |   11	        | Horror          |
-    |       239	|  510	 |LAWLESS VISION |   2	        | Animation       |
-    |       126	|  565	 |MATRIX SNOWMAN |	9           | Foreign         |
-    |       399	|  396	 |HANGING DEEP	 |	7           |  Drama          |
-	
-	
-	## 3.3 Final Join Implementation
-	
-	Now joining parts 1,2 ,3 and 4 to obtain the final base dataset:
-	
-	```sql
-	
-		DROP TABLE IF EXISTS complete_joint_dataset;
-		CREATE TEMP TABLE complete_joint_dataset AS
-		SELECT
-		rental.customer_id,
-		inventory.film_id,
-		film.title,
-		film_category.category_id,
-		category.name AS category_name
-		FROM dvd_rentals.rental
-		INNER JOIN dvd_rentals.inventory
-		ON rental.inventory_id = inventory.inventory_id
-		INNER JOIN dvd_rentals.film
-		ON inventory.film_id = film.film_id
-		INNER JOIN dvd_rentals.film_category
-		ON film.film_id = film_category.film_id
-		INNER JOIN dvd_rentals.category
-		ON film_category.category_id = category.category_id;
+Output:
 
-     SELECT * FROM complete_joint_dataset limit 10;
+|count|
+|-----|
+|958  |
 
-  ```
+
+From the above output we observe that most of our values are located in the inventory table. We can perform an inner join or left join, both types will not affect the output in any way, which we can confirm later on. 
+
+<details>
+<summary>Click to see SQL code</summary>
+<br>
+
+```sql
+DROP TABLE IF EXISTS left_join_part_2;
+CREATE TEMP TABLE left_join_part_2 AS (
+SELECT
+  inventory.inventory_id,
+  inventory.film_id,
+  film.title
+FROM dvd_rentals.inventory
+LEFT JOIN dvd_rentals.film
+  ON inventory.film_id = film.film_id
+);
+
+DROP TABLE IF EXISTS inner_join_part_2;
+CREATE TEMP TABLE inner_join_part_2 AS (
+SELECT 
+  inventory.inventory_id,
+  inventory.film_id,
+  film.title
+FROM dvd_rentals.inventory
+LEFT JOIN dvd_rentals.film
+  ON inventory.film_id = film.film_id
+);
+
+SELECT 
+  'inner join' AS join_type,
+  COUNT(*) AS row_counts,
+  COUNT(DISTINCT film_id) AS unique_film_values
+FROM inner_join_part_2
+
+UNION
+
+SELECT 
+  'left join' AS join_type,
+  COUNT(*) AS row_counts,
+  COUNT(DISTINCT film_id) AS unique_film_values
+FROM left_join_part_2;
+```
+
+</details>
+
+
+### 3.2.5 Join Implementation of part 1 and 2
+
+Now that we’ve done part 1 and 2 for the joining journey - let’s demonstrate join these 2 using 3 inner joins.
+
+```sql
+ DROP TABLE IF EXISTS join_parts_1_and_2;
+ CREATE TEMP TABLE join_parts_1_and_2 AS
+ SELECT
+   rental.customer_id,
+   inventory.film_id,
+   film.title
+ FROM dvd_rentals.rental
+ INNER JOIN dvd_rentals.inventory
+   ON rental.inventory_id = inventory.inventory_id
+ INNER JOIN dvd_rentals.film
+   ON inventory.film_id = film.film_id;
+ 
+ SELECT * FROM join_parts_1_and_2 limit 10;
+```
+
+Output:
+
+|customer_id  |	film_id	 |   title         |
+| ------------|----------|-----------------|
+|    130	  |80	     |  BLANKET BEVERLY|
+|    459	  |333	     |  FREAKY POCUS   |
+|    408	  |373	     |  GRADUATE LORD  |
+|    333	  |535	     |  LOVE SUICIDES  |
+|    222	  |450	     |  IDOLS SNATCHERS|
+|    549	  |613	     |  MYSTIC TRUMAN  |
+|    269	  |870	     |  SWARM GOLD     |
+|    239	  |510	     |  LAWLESS VISION |
+|    126	  |565	     |  MATRIX SNOWMAN |
+|    399	  |396	     |  HANGING DEEP   |
+
+### 3.2.6 Join Implementation of part 3 and 4
+In part 3 of our table join journey, we observe a 1-to-1 relationship for film_id in both the left table dvd_rentals.film and the right table dvd_rentals.film_category.
+
+As we proceed to part 4, we will encounter a similar 1-to-many relationship between category_id and the left table dvd_rentals.film_category, along with a 1-to-1 relationship involving the dvd_rentals.category table.
+
+```sql
+ DROP TABLE IF EXISTS complete_joint_dataset;
+ CREATE TEMP TABLE complete_joint_dataset AS
+ SELECT
+   rental.customer_id,
+   inventory.film_id,
+   film.title,
+   film_category.category_id,
+   category.name AS category_name
+ FROM dvd_rentals.rental
+ INNER JOIN dvd_rentals.inventory
+   ON rental.inventory_id = inventory.inventory_id
+ INNER JOIN dvd_rentals.film
+   ON inventory.film_id = film.film_id
+ INNER JOIN dvd_rentals.film_category
+   ON film.film_id = film_category.film_id
+ INNER JOIN dvd_rentals.category
+   ON film_category.category_id = category.category_id;
+ 
+ SELECT * FROM complete_joint_dataset limit 6;
+ 
+```
+
+Output:
+
+|customer_id|film_id |	  title	     |   category_id|	category_name |
+|-----------|--------|---------------|--------------|-----------------|
+|       130	|  80	 |BLANKET BEVERLY|	8	        | Family          |
+|       459	|  333	 |FREAKY POCUS	 |   12	        | Music           |
+|       408	|  373	 |GRADUATE LORD	 |   3	        | Children        |
+|       333	|  535	 |LOVE SUICIDES	 |   11	        | Horror          |
+|       222	|  450	 |IDOLS SNATCHERS|	3	        | Children        |
+|       549	|  613	 |MYSTIC TRUMAN	 |   5	        | Comedy          |
+|       269	|  870	 |SWARM GOLD	 |   11	        | Horror          |
+|       239	|  510	 |LAWLESS VISION |   2	        | Animation       |
+|       126	|  565	 |MATRIX SNOWMAN |	9           | Foreign         |
+|       399	|  396	 |HANGING DEEP	 |	7           |  Drama          |
+
+
+## 3.3 Final Join Implementation
+
+Now joining parts 1,2 ,3 and 4 to obtain the final base dataset:
+
+```sql
+
+	DROP TABLE IF EXISTS complete_joint_dataset;
+	CREATE TEMP TABLE complete_joint_dataset AS
+	SELECT
+	rental.customer_id,
+	inventory.film_id,
+	film.title,
+	film_category.category_id,
+	category.name AS category_name
+	FROM dvd_rentals.rental
+	INNER JOIN dvd_rentals.inventory
+	ON rental.inventory_id = inventory.inventory_id
+	INNER JOIN dvd_rentals.film
+	ON inventory.film_id = film.film_id
+	INNER JOIN dvd_rentals.film_category
+	ON film.film_id = film_category.film_id
+	INNER JOIN dvd_rentals.category
+	ON film_category.category_id = category.category_id;
+
+ SELECT * FROM complete_joint_dataset limit 10;
+
+ ```
   
-  Output:
-  
-  |customer_id | film_id	title	        |category_id	|   category_name |
-  |------------|---------|------------------|---------------|-----------------|
-  |     130	   |  80	  BLANKET BEVERLY	|    8	        |  Family         |
-  |     459	   |  333	  FREAKY POCUS	    |   12	        |  Music          |
-  |     408	   |  373	  GRADUATE LORD	    |   3	        |  Children       |
-  |     333	   |  535	  LOVE SUICIDES	    |   11	        |  Horror         |
-  |     222	   |  450	  IDOLS SNATCHERS	|    3	        |  Children       |
-  |     549	   |  613	  MYSTIC TRUMAN	    |    5	        |  Comedy         |
-  |     269	   |  870	  SWARM GOLD		|    11         |     Horror      |
-  |     239	   |  510	  LAWLESS VISION	|    2	        |  Animation      |
-  |     126	   |  565	  MATRIX SNOWMAN	|    9	        |  Foreign        |
-  |     399	   |  396	  HANGING DEEP	    |    7	        |  Drama          |
+ Output:
+ 
+ |customer_id | film_id	title	        |category_id	|   category_name |
+ |------------|---------|------------------|---------------|-----------------|
+ |     130	   |  80	  BLANKET BEVERLY	|    8	        |  Family         |
+ |     459	   |  333	  FREAKY POCUS	    |   12	        |  Music          |
+ |     408	   |  373	  GRADUATE LORD	    |   3	        |  Children       |
+ |     333	   |  535	  LOVE SUICIDES	    |   11	        |  Horror         |
+ |     222	   |  450	  IDOLS SNATCHERS	|    3	        |  Children       |
+ |     549	   |  613	  MYSTIC TRUMAN	    |    5	        |  Comedy         |
+ |     269	   |  870	  SWARM GOLD		|    11         |     Horror      |
+ |     239	   |  510	  LAWLESS VISION	|    2	        |  Animation      |
+ |     126	   |  565	  MATRIX SNOWMAN	|    9	        |  Foreign        |
+ |     399	   |  396	  HANGING DEEP	    |    7	        |  Drama          |
 																			  
 																			  
 																			  
- We have now reached the fundamental dataset from which we can perform calculations for our aggregations!
+We have now reached the fundamental dataset from which we can perform calculations for our aggregations!
 
     
   
