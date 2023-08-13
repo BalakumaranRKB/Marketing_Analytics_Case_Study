@@ -135,224 +135,222 @@ We can observe that there is one count extra compared to the total count returne
 	
 #### 2.4.3.2 Hypothesis 2
 
-    There will be a multiple records per unique ```inventory_id``` in the dvd_rentals.rental table.
+There will be a multiple records per unique ```inventory_id``` in the dvd_rentals.rental table.
 	
-	```SQL
-	-- first generate group by counts on the target_column_values column
-	WITH counts_base AS (
-                          SELECT
-                            inventory_id AS target_column_values,
-                            COUNT(*) AS row_counts
-                          FROM dvd_rentals.rental
-                          GROUP BY target_column_values
-                          )
-    -- summarize the group by counts above by grouping again on the row_counts from counts_base CTE part
-        SELECT
-          row_counts,
-          COUNT(target_column_values) as count_of_target_values
-        FROM counts_base
-        GROUP BY row_counts
-        ORDER BY row_counts;
-	```
-	Output:
-	
-    |row_counts| count_of_target_values |
-	|----------|------------------------|
-    |   1	   |       4                |
-    |   2	   |       1126             |
-    |   3	   |       1151             |
-    |   4	   |       1160             |
-    |   5	   |       1139             |
+```SQL
+-- first generate group by counts on the target_column_values column
+WITH counts_base AS (
+                         SELECT
+                           inventory_id AS target_column_values,
+                           COUNT(*) AS row_counts
+                         FROM dvd_rentals.rental
+                         GROUP BY target_column_values
+                         )
+   -- summarize the group by counts above by grouping again on the row_counts from counts_base CTE part
+       SELECT
+         row_counts,
+         COUNT(target_column_values) as count_of_target_values
+       FROM counts_base
+       GROUP BY row_counts
+       ORDER BY row_counts;
+```
+Output:
 
-	The above table confirms our 2nd hypothesis.
+|row_counts| count_of_target_values |
+|----------|------------------------|
+|   1	   |       4                |
+|   2	   |       1126             |
+|   3	   |       1151             |
+|   4	   |       1160             |
+|   5	   |       1139             |
+
+The above table confirms our 2nd hypothesis.
 	
 #### 2.4.3.3 Hypothesis 3
 	
-	 There will be multiple ```inventory_id``` records per unique ```film_id``` value in the ```dvd_rentals.inventory``` table.
-	
-	```SQL
-	with counts_base as (
-                          select film_id as target_column_values,
-                                 COUNT(DISTINCT inventory_id) AS unique_record_counts
-                                 from dvd_rentals.inventory
-                                 GROUP BY target_column_values
-                          )
-    SELECT unique_record_counts,
-    COUNT(target_column_values) as count_of_target_values
-    from counts_base
-    group by unique_record_counts
-	```
-	Output:
-	
-	|target_column_values| unique_record_counts|
-	|-------------------|--------------------|
-    |             1	    |       8            |
-    |             2	    |       3            |
-    |             3	    |       4            |
-    |             4	    |       7            |
-    |             5	    |       3            |
-    |             6	    |       6            |
-    |             7	    |       5            |
-    |             8	    |       4            |
-    |             9	    |       5            |
-    |             10	|       7            |
+There will be multiple ```inventory_id``` records per unique ```film_id``` value in the ```dvd_rentals.inventory``` table.
+
+```SQL
+with counts_base as (
+                         select film_id as target_column_values,
+                                COUNT(DISTINCT inventory_id) AS unique_record_counts
+                                from dvd_rentals.inventory
+                                GROUP BY target_column_values
+                         )
+   SELECT unique_record_counts,
+   COUNT(target_column_values) as count_of_target_values
+   from counts_base
+   group by unique_record_counts
+```
+Output:
+
+|target_column_values| unique_record_counts|
+|-------------------|----------------------|
+|         1	        |       8              |
+|         2	        |       3              |
+|         3	        |       4              |
+|         4	        |       7              |
+|         5	        |       3              |
+|         6	        |       6              |
+|         7	        |       5              |
+|         8	        |       4              |
+|         9	        |       5              |
+|         10	    |       7              |
 
 	We can confirm that there are indeed multiple unique inventory_id per film_id value in the dvd_rentals.inventory table.
 	
 #### 2.3.5 Returning to the 2 Key Questions
 
-     1. How many records exist per inventory_id value in rental or inventory tables?
-	 2. How many overlapping and missing unique foreign key values are there between the two tables?
+1. How many records exist per inventory_id value in rental or inventory tables?
+2. How many overlapping and missing unique foreign key values are there between the two tables?
 	 
 	 
-	 *** rental distribution analysis on inventory_id foreign key ***
+*** rental distribution analysis on inventory_id foreign key ***
 	 
-	 ``` SQL
-	 -- first generate group by counts on the foreign_key_values column
-        WITH counts_base AS (
-        SELECT
-          inventory_id AS foreign_key_values,
-          COUNT(*) AS row_counts
-        FROM dvd_rentals.rental
-        GROUP BY foreign_key_values
-        )
-        -- summarize the group by counts above by grouping again on the row_counts from counts_base CTE part
-        SELECT
-          row_counts,
-          COUNT(foreign_key_values) as count_of_foreign_keys
-        FROM counts_base
-        GROUP BY row_counts
-        ORDER BY row_counts;
-	```
-	
-	Output:
-	
-	|row_counts| count_of_foreign_keys  |
-	|----------|------------------------|
-    |   1	   |       4                |
-    |   2	   |       1126             |
-    |   3	   |       1151             |
-    |   4	   |       1160             |
-    |   5	   |       1139             |
-	
-	From the above output it can be observed that there is a 1 to many mapping between inventory_id and records in the rental table. Also it can be noted that 4 inventory_id's have only a single count here. 1126 inventory_ids exist in 2 different rows, 1151 inventory_ids exixst in 3 different rows and so on
-	
-	*** inventory distribution analysis on inventory_id foreign key***
-	
-	```SQL
-	WITH counts_base AS (
-                          SELECT
-                            inventory_id AS foreign_key_values,
-                            COUNT(*) AS row_counts
-                          FROM dvd_rentals.inventory
-                          GROUP BY foreign_key_values
-                          )
-    SELECT
-      row_counts,
-      COUNT(foreign_key_values) as count_of_foreign_keys
-    FROM counts_base
-    GROUP BY row_counts
-    ORDER BY row_counts;
-	```
-	
-	
-	Output:
-	
-	|row_counts|count_of_foreign_keys|
-	|----------|---------------------|
-	|	1	   |      4581           |
-	
-	From the above output we can confirm that there is a 1:1 mapping betwen the inventory_id and each table row record in the inventory table
-	
-	
-	Proceeding to the second question
-	
-	**How many overlapping and missing unique foreign key values are there between the two tables?**
-	
-	
-	Proceeding to check how many foreign keys only exist in the rental table and not in the inventory table:
-	
-	``` sql 
-			SELECT
-			COUNT(DISTINCT rental.inventory_id)
-			FROM dvd_rentals.rental
-			WHERE NOT EXISTS (
-					SELECT inventory_id
-					FROM dvd_rentals.inventory
-					WHERE rental.inventory_id = inventory.inventory_id);
-	```
-	
-	Output:
-	
-	|count|
-    |-----|
-    | 0   |
-	
-	Great we can confirm that there are no inventory_id records which appear in the dvd_rentals.rental table which does not appear in the dvd_rentals.inventory table.
-	
-	Proceeding to check how many foreign keys only exist in the rental table and not in the inventory table:
-	
-	``` SQL
-			-- how many foreign keys only exist in the right table and not in the left?
-			-- note the table reference changes
-			SELECT
-			COUNT(DISTINCT inventory.inventory_id)
-			FROM dvd_rentals.inventory
-			WHERE NOT EXISTS (
-			SELECT inventory_id
-			FROM dvd_rentals.rental
-			WHERE rental.inventory_id = inventory.inventory_id
-			);
-	```
-	
-	Output:
-	
-	|count|
-    |-----|
-    | 1   |
-	
-	Ok - we’ve spotted a single inventory_id record. Let’s inspect further:
-	
-	``` SQL
-	SELECT *
-    FROM dvd_rentals.inventory
-    WHERE NOT EXISTS (
-      SELECT inventory_id
+ ``` SQL
+ -- first generate group by counts on the foreign_key_values column
+      WITH counts_base AS (
+      SELECT
+        inventory_id AS foreign_key_values,
+        COUNT(*) AS row_counts
       FROM dvd_rentals.rental
-      WHERE rental.inventory_id = inventory.inventory_id
-    );
-	```
+      GROUP BY foreign_key_values
+      )
+      -- summarize the group by counts above by grouping again on the row_counts from counts_base CTE part
+      SELECT
+        row_counts,
+        COUNT(foreign_key_values) as count_of_foreign_keys
+      FROM counts_base
+      GROUP BY row_counts
+      ORDER BY row_counts;
+```
 	
-	Output:
+Output:
 	
-	|inventory_id |	film_id |	store_id  | last_update             |
-	|-------------|---------|-------------|-------------------------|                         
-    |   5	      |     1	|  2	      | 2006-02-15T05:09:17.000Z|
+|row_counts| count_of_foreign_keys  |
+|----------|------------------------|
+|   1	   |       4                |
+|   2	   |       1126             |
+|   3	   |       1151             |
+|   4	   |       1160             |
+|   5	   |       1139             |
+	
+From the above output it can be observed that there is a 1 to many mapping between inventory_id and records in the rental table. Also it can be noted that 4 inventory_id's haveonly a single count here. 1126 inventory_ids exist in 2 different rows, 1151 inventory_ids exixst in 3 different rows and so on
+	
+*** inventory distribution analysis on inventory_id foreign key***
 
-	This single record might seem off at first - but let’s revisit what the inventory data actually represents.
+```SQL
+WITH counts_base AS (
+                      SELECT
+                        inventory_id AS foreign_key_values,
+                        COUNT(*) AS row_counts
+                      FROM dvd_rentals.inventory
+                      GROUP BY foreign_key_values
+                      )
+SELECT
+  row_counts,
+  COUNT(foreign_key_values) as count_of_foreign_keys
+FROM counts_base
+GROUP BY row_counts
+ORDER BY row_counts;
+```
 
-     It is linked to a specific film record which could be rented out by a customer. One such reason for this odd record could be that this specific rental inventory unit was never rented out by a customer.
-	 
-    Checking the intersection of foreign key(inventory_id) between the two tables.
-	
-	``` SQL
-         SELECT
-               COUNT(DISTINCT inventory_id) 
-        FROM dvd_rentals.rental
-        WHERE EXISTS (
-            SELECT inventory_id
-            FROM dvd_rentals.inventory
-            WHERE rental.inventory_id = inventory.inventory_id
-                       );
-    ```
-	Output:
-	
-	|count|
-    |-----|
-    |4580 |
-	
 
-	 
+Output:
+
+|row_counts|count_of_foreign_keys|
+|----------|---------------------|
+|	1	   |      4581           |
+
+From the above output we can confirm that there is a 1:1 mapping betwen the inventory_id and each table row record in the inventory table
+
+
+Proceeding to the second question
+
+**How many overlapping and missing unique foreign key values are there between the two tables?**
+
+
+Proceeding to check how many foreign keys only exist in the rental table and not in the inventory table:
+
+``` sql 
+		SELECT
+		COUNT(DISTINCT rental.inventory_id)
+		FROM dvd_rentals.rental
+		WHERE NOT EXISTS (
+				SELECT inventory_id
+				FROM dvd_rentals.inventory
+				WHERE rental.inventory_id = inventory.inventory_id);
+```
+
+Output:
+
+|count|
+|-----|
+| 0   |
+
+Great we can confirm that there are no inventory_id records which appear in the dvd_rentals.rental table which does not appear in the dvd_rentals.inventory table.
+
+Proceeding to check how many foreign keys only exist in the rental table and not in the inventory table:
+
+``` SQL
+		-- how many foreign keys only exist in the right table and not in the left?
+		-- note the table reference changes
+		SELECT
+		COUNT(DISTINCT inventory.inventory_id)
+		FROM dvd_rentals.inventory
+		WHERE NOT EXISTS (
+		SELECT inventory_id
+		FROM dvd_rentals.rental
+		WHERE rental.inventory_id = inventory.inventory_id
+		);
+```
+
+Output:
+
+|count|
+|-----|
+| 1   |
+
+Ok - we’ve spotted a single inventory_id record. Let’s inspect further:
+
+``` SQL
+SELECT *
+FROM dvd_rentals.inventory
+WHERE NOT EXISTS (
+  SELECT inventory_id
+  FROM dvd_rentals.rental
+  WHERE rental.inventory_id = inventory.inventory_id
+);
+```
+
+Output:
+
+|inventory_id |	film_id |	store_id  | last_update             |
+|-------------|---------|-------------|-------------------------|                         
+|   5	      |     1	|  2	      | 2006-02-15T05:09:17.000Z|
+
+This single record might seem off at first - but let’s revisit what the inventory data actually represents.
+
+It is linked to a specific film record which could be rented out by a customer. One such reason for this odd record could be that this specific rental inventory unit was never rented out by a customer.
+
+Checking the intersection of foreign key(inventory_id) between the two tables.
+
+``` SQL
+     SELECT
+           COUNT(DISTINCT inventory_id) 
+    FROM dvd_rentals.rental
+    WHERE EXISTS (
+        SELECT inventory_id
+        FROM dvd_rentals.inventory
+        WHERE rental.inventory_id = inventory.inventory_id
+                   );
+```
+Output:
+
+|count|
+|-----|
+|4580 |
+
 Now, that we have analyzed and checked, let's proceed on to the Table Joining part.
 
 
