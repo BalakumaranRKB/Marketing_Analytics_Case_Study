@@ -301,7 +301,7 @@ The following questions are part of the final case study quiz - these are exampl
 13. What is the most common top categories combination if order was irrelevant and how many customers have this combination? (e.g. Horror and Drama is a the same as Drama and       Horror)
 
 ### Click here to view ⬇️:
-[![forthebadge](/Images/badges/solution-join-implementation.svg)](https://github.com/BalakumaranRKB/Marketing_Analytics_Case_Study/tree/main/05-Final%20Solution)
+[![forthebadge](/Images/badges/solution-join-implementation.svg)](https://github.com/BalakumaranRKB/Marketing_Analytics_Case_Study/tree/main/06-Solving%20Business%20Questions)
 
 
 
